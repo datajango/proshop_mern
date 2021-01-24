@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import HomeView from './Views/HomeView';
 import ProductView from './Views/ProductView';
 
+
 const App = () => {
   return (
     <Router>

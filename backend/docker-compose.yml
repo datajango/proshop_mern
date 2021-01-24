@@ -1,0 +1,36 @@
+version: "3.1"
+
+services:
+  mongodb:
+    image: bitnami/mongodb:latest
+    container_name: 'mongodb'
+    ports:
+      - '27017-27019:27017-27019'
+    environment:
+      - MONGO_INITDB_DATABASE=pocdb
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - mongodb_data:/bitnami
+      #- ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+      #- ./mongo-volume:/data/db
+      #- ./transfer-volume:/home/transfer
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=ambiance
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      #- ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=admin
+      #- ME_CONFIG_SITE_BASEURL=/mongoadmin/
+    links:
+      - mongodb
+
+volumes:
+  mongodb_data:
