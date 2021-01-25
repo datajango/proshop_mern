@@ -14,7 +14,7 @@ const Rating = ({ value, text, color }) => {
     return (
         <div className='rating'>
             {starInfo.map(info => (
-                <span>
+                <span key={info.stars.toString()}>
                     <i
                         style={{ color }}
                         className={

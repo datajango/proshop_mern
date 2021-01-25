@@ -7,7 +7,7 @@ services:
     ports:
       - '27017-27019:27017-27019'
     environment:
-      - MONGO_INITDB_DATABASE=pocdb
+      - MONGO_INITDB_DATABASE=proshop
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
       - ALLOW_EMPTY_PASSWORD=yes
@@ -31,6 +31,12 @@ services:
       #- ME_CONFIG_SITE_BASEURL=/mongoadmin/
     links:
       - mongodb
+
+  # hoppscotch:
+  #   image: hoppscotch/hoppscotch:latest
+  #   ports:
+  #     - 8082:3000
+
 
 volumes:
   mongodb_data:
